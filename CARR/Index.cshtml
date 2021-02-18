@@ -1,0 +1,95 @@
+﻿@model  IEnumerable<PI_Portal.Models.CARR>
+
+@{
+    ViewBag.Title = "Open CARRs";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+<p>
+    <a href="/CARR/Create" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Start a NEW CARR</a>
+</p>
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @*<p>
+        Search by Name: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>*@
+}
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.CustomerLegalName)*@
+            @*@Html.ActionLink("CustomerLegalName", "Index", new { sortOrder = ViewBag.SortOrder })*@
+            Customer Legal Name
+        </th>       
+       
+        <th>
+            @*@Html.DisplayNameFor(model => model.CreatedBy)*@
+            Created By
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.CreatedOn)*@
+            Created On
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.UpdatedBy)*@
+            Updated By
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.UpdatedOn)*@
+            Updated On
+        </th>
+        
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerLegalName)
+    </td>
+   
+
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedBy)
+    </td>
+    <td>
+        @{if (item.CreatedOn.HasValue)
+            {
+                Html.DisplayFor(modelItem => item.CreatedOn);
+            }
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UpdatedBy)
+    </td>
+    <td>
+        @{if (item.UpdatedOn.HasValue)
+            {
+                Html.DisplayFor(modelItem => item.UpdatedOn);
+            }
+        }
+    </td>
+
+
+
+    @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idCARR }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idCARR }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idCARR })
+        </td>*@
+</tr>
+    }
+
+</table>
+
+<br />
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
